@@ -5,7 +5,6 @@
     <title>AERO test task</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- Le styles -->
     <link href="bootstrap.css" rel="stylesheet">
     <style type="text/css">
       body {
@@ -43,30 +42,23 @@
 
     </style>
     <link href="bootstrap-responsive.css" rel="stylesheet">
-
-    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
-    <!--[if lt IE 9]>
-      <script src="/wp-content/themes/clear-theme/js/html5shiv.js"></script>
-    <![endif]-->
-
   </head>
 
   <body>
 
     <div class="container">
 
-      <form class="form-signin" >
+      <form class="form-signin" action="/academy.php" method="POST">
         <h2 class="form-signin-heading">Welcome to AERO academy!</h2>
-		<input name="username" type="text" class="input-block-level" placeholder="Name" required>
-		<input name="phone" type="text" class="input-block-level" placeholder="Phone">
-        <input name="mail" type="text" class="input-block-level" placeholder="Email address">
-		<input name="birthday" type="text" class="input-block-level" placeholder="Birthday">
-        <input name="comment" type="text" class="input-block-level" placeholder="Comment">
-		
-        <button class="btn btn-large btn-primary" type="submit">Sign in</button>
+		<input name="username" type="text" class="input-block-level" placeholder="Name" >
+		<input name="phone" type="text" class="input-block-level" placeholder="Phone"  maxlength="11" oninput="this.value = this.value.replace(/[^0-9]/g, '')">
+        <input name="email" type="email" class="input-block-level" placeholder="Email address">
+		<input name="birthday" type="text" class="input-block-level" placeholder="Birthday"><br>
+		<textarea name="comment"  class="input-block-level" maxlength="110" placeholder="Comments" rows="2"></textarea>
+		<div><button class="btn btn-large btn-primary" type="submit">Send</button></div>
       </form>
 
-    </div> <!-- /container -->
+    </div>
 	
   </body>
 </html>

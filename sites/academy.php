@@ -26,4 +26,19 @@ if(!empty($_POST["username"]))
 
 echo "$usernameErr <br />";
 
+
+if(!empty($_POST["email"])) {
+	$email = clear_input($_POST["email"]);
+	if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+		$emailErr = "Invalid email format";
+	} else {
+		# TODO: add info to sql table
+		# $emailErr = "Ok, 'email' was entered into the database";
+	}
+} else {
+	$emailErr = "'email' field is empty";
+}
+
+echo "$emailErr <br />";
+
 ?>
