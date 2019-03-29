@@ -1,5 +1,47 @@
 <?php 
 
+$servername = "localhost";
+$username = "root";
+$password = "newpassword";
+$dbname = "aero";
+
+$conn = new mysqli($servername, $username, $password);
+
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+} 
+echo "Connected successfully <br />";
+
+$sql = "CREATE DATABASE IF NOT EXISTS aero DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci";
+
+if ($conn->query($sql) === TRUE) {
+    echo "Database created successfully <br />";
+} else {
+    echo "Error creating database: " . $conn->error;
+}
+
+$conn = new mysqli($servername, $username, $password, $dbname);
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+} 
+
+$sql = "CREATE TABLE IF NOT EXISTS academy
+					(user_id int NOT NULL PRIMARY KEY AUTO_INCREMENT,
+                    username VARCHAR(80) NOT NULL,
+                    phone int(11) NOT NULL,
+					mail VARCHAR(40) NOT NULL,
+					birthday DATE NOT NULL,
+                    comment VARCHAR(120)				
+                    )";
+
+if ($conn->query($sql) === TRUE) {
+    echo "Table academy created successfully";
+} else {
+    echo "Error creating table: " . $conn->error;
+}
+
+
 # $usernameErr = $emailErr = $birthdayErr = $phoneErr = $commentErr = "";
 # $username = $email = $birthday = $phone = $comment = "";
 
@@ -79,4 +121,5 @@ if (!empty($_POST["birthday"])) {
  
 echo "$birthdayErr <br />";
 
+$conn->close();
 ?>

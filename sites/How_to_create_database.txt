@@ -1,0 +1,16 @@
+############### How to create database 'aero': ################
+
+CREATE DATABASE IF NOT EXISTS aero
+DEFAULT CHARACTER SET utf8
+COLLATE utf8_general_ci;
+	
+############### How to create table 'academy': ################
+	
+CREATE TABLE IF NOT EXISTS 'academy'
+					(user_id int NOT NULL PRIMARY KEY AUTO_INCREMENT,
+                    username VARCHAR(80) NOT NULL,
+                    phone int(11) NOT NULL,
+					mail VARCHAR(40) NOT NULL,
+					birthday DATE NOT NULL,
+                    comment VARCHAR(120)
+                    );
