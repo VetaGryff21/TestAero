@@ -50,10 +50,10 @@
 
       <form class="form-signin" action="/academy.php" method="POST">
         <h2 class="form-signin-heading">Welcome to AERO academy!</h2>
-		<input name="username" type="text" class="input-block-level" placeholder="Name" >
-		<input name="phone" type="text" class="input-block-level" placeholder="Phone"  maxlength="11" oninput="this.value = this.value.replace(/[^0-9]/g, '')">
-        <input name="email" type="email" class="input-block-level" placeholder="Email address">
-		<input name="birthday" type="text" class="input-block-level" placeholder="Birthday"><br>
+		<input name="username" type="text" class="input-block-level" placeholder="Name" required>
+		<input name="phone" type="text" class="input-block-level" placeholder="Phone (11 digits)"  maxlength="11" oninput="this.value = this.value.replace(/[^0-9]/g, '')" required>
+        <input name="email" type="email" class="input-block-level" placeholder="Email address" required>
+		<input name="birthday" type="text" class="input-block-level" placeholder="Birthday" required><br>
 		<textarea name="comment"  class="input-block-level" maxlength="110" placeholder="Comments" rows="2"></textarea>
 		<div><button class="btn btn-large btn-primary" type="submit">Send</button></div>
       </form>

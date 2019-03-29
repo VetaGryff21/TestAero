@@ -47,7 +47,22 @@ if (!empty($_POST["comment"])) {
 	# TODO: add info to sql table
 	# $commentErr = "Ok, 'comment' was entered into the database";
 } else {
-	$comment = "";
+	$comment = "-";
 }
+
+
+if(!empty($_POST["phone"])) {
+	$phone = clear_input($_POST["phone"]);
+	if ( strlen($phone) != 11) {
+		$phoneErr = "Invalid phone format (less than 11 digits)"; 
+	} else {
+		# TODO: add info to sql table
+		# $emailErr = "Ok, 'phone' was entered into the database"; 
+	}
+} else {
+	$phoneErr = "'phone' field is empty"; 
+}
+
+echo "$phoneErr <br />";
 
 ?>
