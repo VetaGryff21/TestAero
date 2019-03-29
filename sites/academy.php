@@ -41,9 +41,10 @@ if ($conn->query($sql) === TRUE) {
     echo "Error creating table: " . $conn->error;
 }
 
-
 # $usernameErr = $emailErr = $birthdayErr = $phoneErr = $commentErr = "";
 # $username = $email = $birthday = $phone = $comment = "";
+
+$counterFun = 0;
 
 function clear_input($data) {
   $data = trim($data);
@@ -59,6 +60,7 @@ if(!empty($_POST["username"]))
 	if (!preg_match("/^[a-zA-Z ]*$/", $username)) {
 	    $usernameErr = "Invalid characters was entered into the 'username' field"; 
 	} else {
+		$counterFun = $counterFun + 1;
 		# TODO: add info to sql table
 		# $usernameErr = "Ok, 'username' was entered into the database"; 
 	}
@@ -74,6 +76,7 @@ if(!empty($_POST["email"])) {
 	if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
 		$emailErr = "Invalid email format";
 	} else {
+		$counterFun = $counterFun + 1;
 		# TODO: add info to sql table
 		# $emailErr = "Ok, 'email' was entered into the database";
 	}
@@ -91,6 +94,7 @@ if (!empty($_POST["comment"])) {
 } else {
 	$comment = "-";
 }
+$counterFun = $counterFun + 1;
 
 
 if(!empty($_POST["phone"])) {
@@ -98,6 +102,7 @@ if(!empty($_POST["phone"])) {
 	if ( strlen($phone) != 11) {
 		$phoneErr = "Invalid phone format (less than 11 digits)"; 
 	} else {
+		$counterFun = $counterFun + 1;
 		# TODO: add info to sql table
 		# $emailErr = "Ok, 'phone' was entered into the database"; 
 	}
@@ -112,14 +117,29 @@ if (!empty($_POST["birthday"])) {
 	$test_data_ar = explode('.', $test_data);
 	if(@checkdate($test_data_ar[1], $test_data_ar[0], $test_data_ar[2])) {
 		$birthday = date("Y-m-d", strtotime($_POST["birthday"]));
+		$counterFun = $counterFun + 1;
 		# TODO: add info to sql table
 		# $emailErr = "Ok, 'birthday' was entered into the database"; 
 	} else {
 		$birthdayErr = "Invalid birthday format"; 
 	}
 }
- 
+
 echo "$birthdayErr <br />";
+
+
+if ($counterFun == 5) {
+	$sql = "INSERT INTO academy (username, phone, mail, birthday, comment)
+						VALUES ($username, $phone, $email, $birthday, $comment)";
+
+	if (mysqli_query($conn, $sql)) {
+		echo "New record created successfully";
+	} else {
+		echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+	}
+}
+echo "$counterFun <br />";
+
 
 $conn->close();
 ?>
