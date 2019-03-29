@@ -65,4 +65,18 @@ if(!empty($_POST["phone"])) {
 
 echo "$phoneErr <br />";
 
+if (!empty($_POST["birthday"])) {
+	$test_data = preg_replace('/[^0-9\.]/u', '', clear_input($_POST['birthday']));
+	$test_data_ar = explode('.', $test_data);
+	if(@checkdate($test_data_ar[1], $test_data_ar[0], $test_data_ar[2])) {
+		$birthday = date("Y-m-d", strtotime($_POST["birthday"]));
+		# TODO: add info to sql table
+		# $emailErr = "Ok, 'birthday' was entered into the database"; 
+	} else {
+		$birthdayErr = "Invalid birthday format"; 
+	}
+}
+ 
+echo "$birthdayErr <br />";
+
 ?>

@@ -53,7 +53,7 @@
 		<input name="username" type="text" class="input-block-level" placeholder="Name" required>
 		<input name="phone" type="text" class="input-block-level" placeholder="Phone (11 digits)"  maxlength="11" oninput="this.value = this.value.replace(/[^0-9]/g, '')" required>
         <input name="email" type="email" class="input-block-level" placeholder="Email address" required>
-		<input name="birthday" type="text" class="input-block-level" placeholder="Birthday" required><br>
+		<input name="birthday" type="text" class="input-block-level" placeholder="Birthday (dd.mm.yyyy)" required><br>
 		<textarea name="comment"  class="input-block-level" maxlength="110" placeholder="Comments" rows="2"></textarea>
 		<div><button class="btn btn-large btn-primary" type="submit">Send</button></div>
       </form>
